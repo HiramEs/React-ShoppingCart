@@ -1,12 +1,29 @@
-//Feature 1
-function App() {
+import React, { useState } from 'react';
+import Products from './components/Products';
+import data from "./data.json";
+
+const App = () => {
+
+  const [state, setState] = useState({
+    products: data.products,
+    size: "",
+    sort: "",
+  });
+
   return (
     <div className="grid-container">
       <header>
         <a href="/">React Shoppign Cart</a>
       </header>
       <main>
-        Product List
+        <div className="content" >
+          <div className="main">
+            <Products products={state.products} />
+          </div>
+          <div className="sidebar" >
+            Cart Items
+          </div>
+        </div>
       </main>
       <footer>
         All right's reserved
