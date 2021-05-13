@@ -3,7 +3,7 @@ import FormatCurrency from "../utils/utils"
 
 export default function Products({products}) {
 
-    console.log(products);
+    // console.log(products);
     
     return (
         <div>

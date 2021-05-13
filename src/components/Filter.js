@@ -1,18 +1,20 @@
 import React from 'react'
 
-export default function Filter({ count }) {
+export default function Filter({ count, size, sort, filterProducts, sortProducts }) {
     return (
-        <div>
-            <div className="filter-result">{count}</div>
+        <div className="filter" > 
+            <div className="filter-result">{count} Products</div>
             <div className="filter-sort">
-                Order
-                <select name="" id="">
-                    
+                Order {" "}
+                <select value={sort} onChange={sortProducts} name="" id="">
+                    <option>Latest</option>
+                    <option value="Lowest">Lowest</option>
+                    <option value="Highest">Highest</option>
                 </select>
             </div>
             <div className="filter-size">
-                Filter
-                <select name="" id="">
+                Filter {""}
+                <select value={size} onChange={filterProducts} name="" id="">
                     <option value="All">All</option>
                     <option value="XS">XS</option>
                     <option value="S">S</option>

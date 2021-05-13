@@ -11,6 +11,33 @@ const App = () => {
     sort: "",
   });
 
+  const filterProducts = (event) => {
+    console.log(event.target.value);
+    if (event.target.value === "All") {
+      setState({ size: event.target.value, products: data.products });
+    } else {
+      setState({
+        size: event.target.value,
+        products: data.products.filter(product => product.availableSizes.indexOf(event.target.value) >= 0)
+      });
+    }
+  }
+
+  const sortProducts = (event) => {
+    console.log(event.target.value);
+    const sort = event.target.value;
+    setState(prevState => ({
+      sort,
+      products: state.products.slice().sort((a, b) => (
+        sort === "Lowest" ?
+          ((a.price > b.price) ? 1 : -1) :
+          sort === "Highest" ?
+            ((a.price < b.price) ? 1 : -1) :
+            ((a._id < b._id) ? 1 : -1)
+      ))
+    }));
+  }
+
   return (
     <div className="grid-container">
       <header>
@@ -19,7 +46,12 @@ const App = () => {
       <main>
         <div className="content" >
           <div className="main">
-            <Filter count={state.products.length} />
+            <Filter
+              count={state.products.length}
+              size={state.size}
+              sort={state.sort}
+              filterProducts={filterProducts}
+              sortProducts={sortProducts} />
             <Products products={state.products} />
           </div>
           <div className="sidebar" >
