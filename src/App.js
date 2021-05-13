@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Filter from './components/Filter';
 import Products from './components/Products';
 import data from "./data.json";
 
@@ -18,6 +19,7 @@ const App = () => {
       <main>
         <div className="content" >
           <div className="main">
+            <Filter count={state.products.length} />
             <Products products={state.products} />
           </div>
           <div className="sidebar" >
