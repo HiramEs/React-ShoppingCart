@@ -1,7 +1,7 @@
 import React from 'react'
 import FormatCurrency from "../utils/utils"
 
-export default function Products({products}) {
+export default function Products({products, addToCart}) {
 
     // console.log(products);
     
@@ -21,7 +21,7 @@ export default function Products({products}) {
                                 <div>
                                     {FormatCurrency(product.price)}
                                 </div>
-                                <button className="button primary" >Add To Cart</button>
+                                <button onClick={() => addToCart(product)} className="button primary" >Add To Cart</button>
                             </div>
                         </div>
                     </li>
