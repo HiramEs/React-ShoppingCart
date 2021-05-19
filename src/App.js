@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import Cart from './components/Cart';
 import Filter from './components/Filter';
@@ -6,36 +6,6 @@ import Products from './components/Products';
 import store from "./store";
 
 const App = () => {
-
-  const [cartItems, setCartItems] = useState(localStorage.getItem("cart-items") ? JSON.parse(localStorage.getItem("cart-items")) : []);
-
-  const CreateOrder = (order) => {
-    alert("Need to save order for " + order.name);
-  }
-
-  const removeFromCart = (product) => {
-    const CartItems = cartItems.slice();
-    setCartItems(CartItems.filter(x => x._id !== product._id));
-    localStorage.setItem("cart-items", JSON.stringify(CartItems.filter(x => x._id !== product._id)));
-  }
-
-  const addToCart = (product) => {
-    console.log("si")
-    const CartItems = cartItems.slice();
-    let alreadyInCart = false;
-    CartItems.forEach(item => {
-      if (item._id === product._id) {
-        item.count++;
-        alreadyInCart = true;
-      }
-    });
-    if (!alreadyInCart) {
-      CartItems.push({ ...product, count: 1 });
-    }
-    setCartItems(CartItems);
-    localStorage.setItem("cart-items", JSON.stringify(CartItems));
-  }
-
   return (
     <Provider store={store} >
       <div className="grid-container">
@@ -46,10 +16,10 @@ const App = () => {
           <div className="content" >
             <div className="main">
               <Filter />
-              <Products addToCart={addToCart} />
+              <Products />
             </div>
             <div className="sidebar" >
-              <Cart cartItems={cartItems} removeFromCart={removeFromCart} CreateOrder={CreateOrder} />
+              <Cart />
             </div>
           </div>
         </main>

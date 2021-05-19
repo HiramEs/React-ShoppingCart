@@ -4,8 +4,9 @@ import Modal from "react-modal";
 import formatCurrency from '../utils/utils';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from "../actions/productActions";
+import { addToCart } from '../actions/cartActions';
 
-const Products = ({ addToCart }) => {
+const Products = () => {
 
     const products = useSelector(state => state.products.filteredItems);
     const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Products = ({ addToCart }) => {
                                     <div>
                                         {FormatCurrency(product.price)}
                                     </div>
-                                    <button onClick={() => addToCart(product)} className="button primary" >Add To Cart</button>
+                                    <button onClick={() => dispatch(addToCart(product))} className="button primary" >Add To Cart</button>
                                 </div>
                             </div>
                         </li>
