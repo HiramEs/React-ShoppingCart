@@ -7,7 +7,7 @@ import { fetchProducts } from "../actions/productActions";
 
 const Products = ({ addToCart }) => {
 
-    const products = useSelector(state => state.products.items);
+    const products = useSelector(state => state.products.filteredItems);
     const dispatch = useDispatch();
 
     const [state, setState] = useState({
